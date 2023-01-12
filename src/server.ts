@@ -14,7 +14,7 @@ const HOSTNAME = process.env.HOSTNAME || "http://localhost";
 
 app.use(cors());
 app.use(express.json());
-app.disable("etag");
+
 app.use(specialistRouter);
 app.use(fieldOfWorkRouter);
 app.use(educationRouter);
