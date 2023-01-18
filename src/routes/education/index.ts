@@ -1,16 +1,12 @@
 import { Router } from "express";
 import {
-  listAll,
-  listById,
-  create,
-  update,
-  remove,
-} from "../../middlewares/education";
+  listAllEducation,
+  listByIdEducation,
+  createEducation,
+} from "../../controllers/education";
 
 export const educationRouter = Router();
 
-educationRouter.get("/education", listAll);
-educationRouter.get("/education/:id", listById);
-educationRouter.post("/education", create);
-educationRouter.put("/education/:id", update);
-educationRouter.delete("/education/:id", remove);
+educationRouter.get("/education", listAllEducation);
+educationRouter.get("/education/:id", listByIdEducation);
+educationRouter.post("/education", createEducation);
