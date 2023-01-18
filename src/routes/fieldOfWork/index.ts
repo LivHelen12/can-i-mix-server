@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as FieldOfWorkController from "../../controllers/fieldOfWork";
+import * as FieldOfWorkController from "../../models/fieldOfWork";
 
 export const fieldOfWorkRouter = Router();
 

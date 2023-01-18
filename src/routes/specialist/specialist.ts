@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as SpecialistController from "../../controllers/specialist";
+import * as SpecialistController from "../../models/specialist";
 
 export const specialistRouter = Router();
 

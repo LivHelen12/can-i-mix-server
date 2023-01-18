@@ -6,7 +6,7 @@ import { fieldOfWorkRouter } from "./routes/fieldOfWork";
 import { educationRouter } from "./routes/education";
 import { recommendedRouter } from "./routes/recommended";
 import { substanceRouter } from "./routes/substance";
-import { postRouter } from "./routes/post";
+import { postRouter } from "./routes/posts";
 
 const app = express();
 const PORT = process.env.PORT || 4000;
