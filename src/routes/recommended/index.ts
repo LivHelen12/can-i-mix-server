@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as RecommendedController from "../../controllers/recommended";
+import * as RecommendedController from "../../models/recommended";
 
 export const recommendedRouter = Router();
 

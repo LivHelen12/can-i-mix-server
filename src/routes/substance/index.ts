@@ -1,5 +1,5 @@
 import { Router } from "express";
-import * as SubstanceController from "../../controllers/substance";
+import * as SubstanceController from "../../models/substance";
 
 export const substanceRouter = Router();
 
