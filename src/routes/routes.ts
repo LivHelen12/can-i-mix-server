@@ -1,6 +1,6 @@
 import express from "express";
 
-import { specialistRouter } from "./specialist/specialist";
+import { specialistRouter } from "./specialist";
 import { fieldOfWorkRouter } from "./fieldOfWork";
 import { educationRouter } from "./education";
 import { recommendedRouter } from "./recommended";
