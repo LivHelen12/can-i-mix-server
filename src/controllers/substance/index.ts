@@ -1,73 +1,54 @@
 import { RequestHandler } from "express";
-import * as SubstanceModel from "../../models/substance";
+import { StatusCodes } from "http-status-codes";
 
-export const listAllSubstance: RequestHandler = async (req, res) => {
+import * as SubstanceModel from "../../services/substance";
+
+export const createSubstanceController: RequestHandler = async (
+  req,
+  res,
+  next
+) => {
+  try {
+    const substance = req.body;
+    const newSubstance = SubstanceModel.createSubstance(substance);
+    res.json(newSubstance);
+  } catch (error: any) {
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
+  }
+};
+
+export const listAllSubstanceController: RequestHandler = async (
+  req,
+  res,
+  next
+) => {
   try {
     const substances = await SubstanceModel.listSubstance();
-    return res.status(200).json(substances);
+    res.json(substances);
   } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
   }
 };
 
-export const listByIdSubstance: RequestHandler = async (req, res) => {
-  const { id } = req.params;
+export const listByIdSubstanceController: RequestHandler = async (
+  req,
+  res,
+  next
+) => {
   try {
-    if (id) {
-      const substance = await SubstanceModel.listSubstanceById(Number(id));
-      return res.status(200).json(substance);
-    } else {
-      return res.status(400).json({ error: "Missing id in request params" });
-    }
+    const { id } = req.params;
+    const substance = await SubstanceModel.listSubstanceById(Number(id));
+    res.json(substance);
   } catch (error: any) {
-    return res.status(500).json({ error: error.message });
-  }
-};
-
-export const createSubstance: RequestHandler = async (req, res) => {
-  const substance = req.body;
-  try {
-    if (substance) {
-      const newSubstance = SubstanceModel.createSubstance(substance);
-      return res.status(201).json(newSubstance);
-    } else {
-      return res
-        .status(400)
-        .json({ error: "Missing substance object in request body" });
-    }
-  } catch (error: any) {
-    return res.status(500).json({ error: error.message });
-  }
-};
-
-export const updateSubstance: RequestHandler = async (req, res) => {
-  const { id } = req.params;
-  const substance = req.body;
-  try {
-    if (id) {
-      const updateSubstance = await SubstanceModel.updateSubstance(
-        substance,
-        Number(id)
-      );
-      return res.status(200).json(updateSubstance);
-    } else {
-      return res.status(400).json({ error: "Missing id in request params" });
-    }
-  } catch (error: any) {
-    return res.status(500).json({ error: error.message });
-  }
-};
-
-export const deleteSubstance: RequestHandler = async (req, res) => {
-  const { id } = req.params;
-  try {
-    if (id) {
-      await SubstanceModel.deleteSubstance(Number(id));
-      return res.status(200).send();
-    } else {
-      return res.status(400).json({ error: "Missing id in request params" });
-    }
-  } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
   }
 };
