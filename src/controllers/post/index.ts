@@ -1,70 +1,72 @@
 import { RequestHandler } from "express";
-import * as PostModel from "../../models/post";
+import { StatusCodes } from "http-status-codes";
+import * as PostModel from "../../services/post";
 
-export const listAllPost: RequestHandler = async (req, res) => {
+export const listAllPostController: RequestHandler = async (req, res, next) => {
   try {
     const posts = await PostModel.listPost();
-    return res.status(200).json(posts);
+    res.json(posts);
   } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
   }
 };
 
-export const listByIdPost: RequestHandler = async (req, res) => {
-  const { id } = req.params;
+export const listByIdPostController: RequestHandler = async (
+  req,
+  res,
+  next
+) => {
   try {
-    if (id) {
-      const post = await PostModel.listPostById(Number(id));
-      return res.status(200).json(post);
-    } else {
-      return res.status(400).json({ error: "Missing id in request params" });
-    }
+    const { id } = req.params;
+    const post = await PostModel.listPostById(Number(id));
+    res.json(post);
   } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
   }
 };
 
-export const createPost: RequestHandler = async (req, res) => {
-  const post = req.body;
+export const createPostController: RequestHandler = async (req, res, next) => {
   try {
-    if (post) {
-      const newPost = PostModel.createPost(post);
-      return res.status(201).json(newPost);
-    } else {
-      return res
-        .status(400)
-        .json({ error: "Missing post object in request body" });
-    }
+    const post = req.body;
+    const newPost = PostModel.createPost(post);
+    res.json(newPost);
   } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
   }
 };
 
-export const updatePost: RequestHandler = async (req, res) => {
-  const { id } = req.params;
-  const post = req.body;
+export const updatePostController: RequestHandler = async (req, res, next) => {
   try {
-    if (id) {
-      const updatePost = await PostModel.updatePost(post, Number(id));
-      return res.status(200).json(updatePost);
-    } else {
-      return res.status(400).json({ error: "Missing id in request params" });
-    }
+    const { id } = req.params;
+    const post = req.body;
+    const updatePost = await PostModel.updatePost(post, Number(id));
+    res.json(updatePost);
   } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
   }
 };
 
-export const deletePost: RequestHandler = async (req, res) => {
-  const { id } = req.params;
+export const deletePostController: RequestHandler = async (req, res, next) => {
   try {
-    if (id) {
-      await PostModel.deletePost(Number(id));
-      return res.status(200).send();
-    } else {
-      return res.status(400).json({ error: "Missing id in request params" });
-    }
+    const { id } = req.params;
+    await PostModel.deletePost(Number(id));
+    res.send();
   } catch (error: any) {
-    return res.status(500).json({ error: error.message });
+    res
+      .status(StatusCodes.INTERNAL_SERVER_ERROR)
+      .json({ error: error.message });
+    next(error);
   }
 };
