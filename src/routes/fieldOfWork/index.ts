@@ -1,12 +1,10 @@
 import { Router } from "express";
 import {
-  createFields,
-  listAllFields,
-  listByIdFields,
+  listAllFieldsController,
+  listByFieldIdController,
 } from "../../controllers/fieldOfWork";
 
 export const fieldOfWorkRouter = Router();
 
-fieldOfWorkRouter.get("/fieldofwork", listAllFields);
-fieldOfWorkRouter.get("/fieldofwork/:id", listByIdFields);
-fieldOfWorkRouter.post("/fieldofwork", createFields);
+fieldOfWorkRouter.get("/fieldofwork", listAllFieldsController);
+fieldOfWorkRouter.get("/fieldofwork/:id", listByFieldIdController);

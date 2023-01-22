@@ -45,33 +45,3 @@ export const listSubstanceById = async (
     },
   });
 };
-
-export const updateSubstance = async (
-  substance: Omit<Substance, "id">,
-  id: number
-): Promise<Substance> => {
-  const { name } = substance;
-
-  return prisma.substance.update({
-    where: {
-      id,
-    },
-    data: {
-      name,
-    },
-    select: {
-      id: true,
-      name: true,
-      createdAt: true,
-      updatedAt: true,
-    },
-  });
-};
-
-export const deleteSubstance = async (id: number): Promise<void> => {
-  await prisma.substance.delete({
-    where: {
-      id,
-    },
-  });
-};
