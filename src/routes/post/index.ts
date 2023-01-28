@@ -1,11 +1,9 @@
 import { Router } from "express";
-import {
-  createPostController,
-  listAllPostController,
-  listByIdPostController,
-  updatePostController,
-  deletePostController,
-} from "../../controllers/post";
+import { createPostController } from "../../useCases/post/create/CreatePost.Controller";
+import { deletePostController } from "../../useCases/post/delete/DeletePost.Controller";
+import { listAllPostController } from "../../useCases/post/findAll/FindAllPost.Controller";
+import { listByIdPostController } from "../../useCases/post/findById/FindByIdPost.Controller";
+import { updatePostController } from "../../useCases/post/update/UpdatePost.Controller";
 
 export const postRouter = Router();
 

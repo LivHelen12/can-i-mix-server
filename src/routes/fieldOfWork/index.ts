@@ -1,8 +1,6 @@
 import { Router } from "express";
-import {
-  listAllFieldsController,
-  listByFieldIdController,
-} from "../../controllers/fieldOfWork";
+import { listAllFieldsController } from "../../useCases/fieldOfWork/findAll/FindAllFieldOfWork.Controller";
+import { listByFieldIdController } from "../../useCases/fieldOfWork/findById/FindByIdFieldOfWork.Controller";
 
 export const fieldOfWorkRouter = Router();
 
