@@ -1,8 +1,6 @@
 import { Router } from "express";
-import {
-  listAllEducationController,
-  listByIdEducationController,
-} from "../../controllers/education";
+import { listAllEducationController } from "../../useCases/education/findAll/FindAllEducation.Controller";
+import { listByIdEducationController } from "../../useCases/education/findById/FindByIdEducation.Controller";
 
 export const educationRouter = Router();
 
