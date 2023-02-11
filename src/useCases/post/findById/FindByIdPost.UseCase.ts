@@ -6,16 +6,16 @@ export const listPostById = async (id: number): Promise<Post | null> => {
     where: {
       id,
     },
-    select: {
-      id: true,
-      firstSubstanceId: true,
-      secondSubstanceId: true,
-      recommendedId: true,
-      description: true,
-      content: true,
-      specialistId: true,
-      createdAt: true,
-      updatedAt: true,
+    include: {
+      firstSubstance: true,
+      secondSubstance: true,
+      recommended: true,
+      specialist: {
+        include: {
+          education: true,
+          fieldOfWork: true,
+        },
+      },
     },
   });
 };
