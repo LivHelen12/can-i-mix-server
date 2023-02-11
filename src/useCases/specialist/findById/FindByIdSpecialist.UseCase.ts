@@ -8,20 +8,9 @@ export const listSpecialistById = async (
     where: {
       id,
     },
-    select: {
-      id: true,
-      name: true,
-      cpf: true,
-      mobile: true,
-      fieldOfWork: true,
+    include: {
       education: true,
-      profession: true,
-      email: true,
-      password: true,
-      educationId: true,
-      fieldOfWorkId: true,
-      createdAt: true,
-      updatedAt: true,
+      fieldOfWork: true,
     },
   });
 };
