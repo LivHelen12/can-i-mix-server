@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createSubstanceController } from "../../useCases/substance/create/CresteSubstante.Controller";
+import { createSubstanceController } from "../../useCases/substance/create/CreateSubstante.Controller";
 import { listAllSubstanceController } from "../../useCases/substance/findAll/FindAllSubstance.Controller";
 import { listByIdSubstanceController } from "../../useCases/substance/findById/FindById.Controller";
 
