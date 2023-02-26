@@ -1,9 +1,8 @@
-import { Education } from "../../api/education";
 import prisma from "../../lib/prisma";
 
-export default new class EducationRepository { 
+export default new class EducationRepository {
    async findAll()  {
-    const educations =  prisma.education.findMany({
+    const educations = await prisma.education.findMany({
       select: {
         id: true,
         name: true,
@@ -16,12 +15,12 @@ export default new class EducationRepository {
   }
 
   async findById(id: number) {
-    const education = prisma.education.findUnique({
+    const education = await prisma.education.findUnique({
       where: {
         id,
       },
       select: {
-        id: true, 
+        id: true,
         name: true,
         createdAt: true,
         updatedAt: true,
@@ -31,8 +30,8 @@ export default new class EducationRepository {
     return education;
   }
 
-  create(name: string){
-    const education = prisma.education.create({
+  async create(name: string){
+    const education = await prisma.education.create({
       data: {
         name,
       },
@@ -47,11 +46,11 @@ export default new class EducationRepository {
     return education;
   }
 
-  update(id: number, name: string){
-    const education = prisma.education.update({
+  async update(id: number, name: string){
+    const education = await prisma.education.update({
       data: {
         name,
-      }, 
+      },
       where: {
         id,
       }
