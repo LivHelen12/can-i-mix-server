@@ -1,10 +1,11 @@
 import { Router } from "express";
-import { createFieldOfWorkController } from "../../useCases/fieldOfWork/create/CreateFieldOfWork.Controller";
-import { listAllFieldsController } from "../../useCases/fieldOfWork/findAll/FindAllFieldOfWork.Controller";
-import { listByFieldIdController } from "../../useCases/fieldOfWork/findById/FindByIdFieldOfWork.Controller";
+import FieldOfWorkController from "../../controller/fieldOfWork/FieldOfWorkController";
 
 export const fieldOfWorkRouter = Router();
 
-fieldOfWorkRouter.post("/fieldofwork", createFieldOfWorkController);
-fieldOfWorkRouter.get("/fieldofwork", listAllFieldsController);
-fieldOfWorkRouter.get("/fieldofwork/:id", listByFieldIdController);
+fieldOfWorkRouter.get("/fieldofwork", FieldOfWorkController.index);
+fieldOfWorkRouter.get("/fieldofwork/:id", FieldOfWorkController.show);
+fieldOfWorkRouter.post("/fieldofwork", FieldOfWorkController.store);
+fieldOfWorkRouter.put("/fieldofwork/:id", FieldOfWorkController.update);
+fieldOfWorkRouter.delete("/fieldofwork/:id", FieldOfWorkController.delete);
+
